@@ -22,13 +22,17 @@
     <center><button type="button" style="background-color: #FD6C9E; color: white; width: 200px; height: 40px; border: none;" onclick="window.location.href='/gossips/new/'">
       <strong>Send a Gossip</strong>
     </button></center>
-
-    <% gossips.each do |gossip| %> <!-- Voilà l équivalent de #{} dans les fichiers .erb pour éxecuter du ruby au sein html -->
-      <p>
-        <%= gossip.author %><br/>
-        <%= gossip.content %> <!-- équivalent du puts -->
-      </p>
-    <% end %>
+    
+    <% 2.times do %><br/><% end %>
+    <center><h4><em>To know our last gossips...</em></h4></center>
+      <% gossips.each_with_index do |gossip, index| %>
+        <center>
+          <a href="/gossip/<%=index%>">Gossip n°<%=index + 1 %></a>
+          <br/>
+        </center>
+      <% end %>
+      
+    <center><h4><em>You Know You Love Me. XOXO, Gossip Girl.</em></h4></center>
   
   </body>
 </html>

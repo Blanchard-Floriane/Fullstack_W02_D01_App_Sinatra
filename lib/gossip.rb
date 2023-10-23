@@ -1,11 +1,12 @@
 require 'csv'
 
 class Gossip
-  attr_reader :author, :content #2 variables d'instance
+  attr_reader :author, :content, :id #3 variables d'instance
 
   def initialize(author, content) #ces 2 variables deviennent des paramètres via la méthode initialize
     @content = content
     @author = author
+    @id = id
   end
 
   def save #pour enregistrer dans la BDD
@@ -20,6 +21,16 @@ class Gossip
       all_gossips << Gossip.new(csv_line[0], csv_line[1]) #récupère colonnes 1 et 2 pour chaque ligne du csv 
     end
     return all_gossips #renvoie le résultat
+  end
+
+  def self.find(id)
+    data = all()
+    @id = id.to_i + 1
+    if @id - 1  < 0 || id > data.length #si id négatif ou dépasse le nb de gossips dispos
+      return [nil, nil , nil]
+    else 
+      return [@id.to_s,data[@id-1].content,data[@id-1].author]
+    end
   end
 
   def destroy_gossip
