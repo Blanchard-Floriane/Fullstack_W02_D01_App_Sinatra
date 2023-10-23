@@ -10,4 +10,4 @@ require 'view.rb'
 Router.new.perform
 
 
-binding.pry
+#binding.pry
