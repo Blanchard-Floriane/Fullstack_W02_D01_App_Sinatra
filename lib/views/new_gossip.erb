@@ -4,17 +4,20 @@
   </head>
   <body>
     
-    <h1>Crée un potin !</h1>
+    <% 6.times do %><br/><% end %>
+
+    <center><h1>What is your Gossip?</h1></center>
     
-    <p>Balance ton potin via le formulaire ci-dessous</p>
-    
-    <form action='/gossips/new/' method='POST'> <!--équivalent du gets.chomp en ruby-->
-      Saisi ici ton nom :  <input type='text' name='gossip_author'/>
-      <br/> <!--Saut de ligne-->
-      Balance ton potin : <input type='text' name='gossip_content'/>
-      <br/>
-      <input type='submit'/>
-    </form>
+    <% 2.times do %><br/><% end %>
+
+    <center><h4>Please, fill the form so everyone can enjoy it ;)</h4></center>
+    <center><form action='/gossips/new/' method='POST'> <!--équivalent du gets.chomp en ruby-->
+      Tell us your name:  <input type='text' name='gossip_author'/>
+      <% 2.times do %><br/><% end %>
+      Your Gossip: <input type='text' name='gossip_content'/>
+      <% 3.times do %><br/><% end %>
+      <input type="submit" style="background-color: #FD6C9E; color: white; width: 200px; height: 40px; border: none;"/>
+    </form></center>
   
-    </body>
+  </body>
 </html>

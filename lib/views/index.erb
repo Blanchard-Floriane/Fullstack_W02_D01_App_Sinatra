@@ -5,12 +5,23 @@
   
   <body>
     
-    <h1>Mon super site de gossip, depuis le dossier views !</h1>
+    <% 6.times do %><br/><% end %>
+    <h1><center>Gossip Girl</center></h1>
     
-    <p>Bienvenu à toi, Oh Mousaillon.</p>
-    <p>Tu cherches la liste de tous nos potins ? ne perds pas patience.. En attendant crées un nouveau potin :</p>
+    <br/>
+    
+    <h4><center><em>Hey, Gossip girl here,</em></center></h4>
+    <h4><center><em>You're one and only into the scandalous life of THP's elite.</em></center></h4>
+    <h4><center><em>And who am I?</em></center></h4>
+    <h4><center><em>That's a secret i'm never tell.</em></center></h4>
+    
+    <br/>
+
     <!--Sinatra est malin et comprendra qu'il faut renvoyer via l'URL complète avec le bon port-->
-    <a href="/gossips/new/">Partager un Gossip</a>
+    
+    <center><button type="button" style="background-color: #FD6C9E; color: white; width: 200px; height: 40px; border: none;" onclick="window.location.href='/gossips/new/'">
+      <strong>Send a Gossip</strong>
+    </button></center>
 
     <% gossips.each do |gossip| %> <!-- Voilà l équivalent de #{} dans les fichiers .erb pour éxecuter du ruby au sein html -->
       <p>

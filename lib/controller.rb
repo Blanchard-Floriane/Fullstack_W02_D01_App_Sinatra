@@ -21,6 +21,9 @@ class ApplicationController < Sinatra::Base #pour hériter des fonctionnalités 
     redirect '/' #pour rediriger vers l'accueil
   end
   
+  # get '/gossips/:id' do |x| #pour gérer l'affichage du formulaire
+  #   erb :show, locals: {gossips: Gossip.all.find[x]}
+  # end
 
 end
 
