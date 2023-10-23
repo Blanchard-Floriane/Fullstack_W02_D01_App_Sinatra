@@ -6,7 +6,7 @@ require 'rerun'
 
 class ApplicationController < Sinatra::Base #pour hériter des fonctionnalités de base de sinatra
   get '/' do #si qq1 va sur l'URL tu fais...
-    erb :index
+    erb :index, locals: {gossips: Gossip.all} #locals pour envoyer des variables au fichier ERB. Ici un array obtenu avec Gossip.all
   end
 
   get '/gossips/new/' do #pour gérer l'affichage du formulaire
@@ -17,8 +17,10 @@ class ApplicationController < Sinatra::Base #pour hériter des fonctionnalités 
     Gossip.new(params["gossip_author"], params["gossip_content"]).save
     # Crée une instance de Gossip avec les données du formulaire
     # Demande au model de l'inscrire dans le CSV, en créant une nouvelle ligne dans mon fichier CSV
-
+    #Save => car le contenu de params ne persiste que d’une page sur l’autre. Le hash se vide à chaque requête HTTP
+    redirect '/' #pour rediriger vers l'accueil
   end
+  
 
 end
 

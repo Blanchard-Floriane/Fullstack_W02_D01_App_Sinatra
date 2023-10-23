@@ -11,6 +11,13 @@
     <p>Tu cherches la liste de tous nos potins ? ne perds pas patience.. En attendant crées un nouveau potin :</p>
     <!--Sinatra est malin et comprendra qu'il faut renvoyer via l'URL complète avec le bon port-->
     <a href="/gossips/new/">Partager un Gossip</a>
+
+    <% gossips.each do |gossip| %> <!-- Voilà l équivalent de #{} dans les fichiers .erb pour éxecuter du ruby au sein html -->
+      <p>
+        <%= gossip.author %><br/>
+        <%= gossip.content %> <!-- équivalent du puts -->
+      </p>
+    <% end %>
   
   </body>
 </html>

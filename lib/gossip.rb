@@ -16,11 +16,8 @@ class Gossip
 
   def self.all
     all_gossips = [] # Crée un tableau vide pour stocker les potins
-
-    CSV.foreach('./db/gossip.csv') do |row|
-      author, content = row
-      gossip_provisoire = Gossip.new(author, content) # Crée un objet gossip à partir des données du CSV
-      all_gossips << gossip_provisoire # Ajoute le gossip provisoire à l'array
+    CSV.read("./db/gossip.csv").each do |csv_line|
+      all_gossips << Gossip.new(csv_line[0], csv_line[1]) #récupère colonnes 1 et 2 pour chaque ligne du csv 
     end
     return all_gossips #renvoie le résultat
   end
