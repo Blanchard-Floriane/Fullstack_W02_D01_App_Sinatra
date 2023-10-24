@@ -14,20 +14,21 @@ class ApplicationController < Sinatra::Base #pour hériter des fonctionnalités 
   end
 
   post '/gossips/new/' do #post équivalent à gets.chomp
-    Gossip.new(params["gossip_author"], params["gossip_content"]).save
+    gossip = Gossip.new(params["gossip_author"], params["gossip_content"])
     # Crée une instance de Gossip avec les données du formulaire
     # Demande au model de l'inscrire dans le CSV, en créant une nouvelle ligne dans mon fichier CSV
+    gossip.save
     #Save => car le contenu de params ne persiste que d’une page sur l’autre. Le hash se vide à chaque requête HTTP
     redirect '/' #pour rediriger vers l'accueil
   end
   
-  get '/gossips/:id' do #va chercher le gossip spécifique fonction Id
+  get '/gossips/:id' do #génère l'Id de chaque gossip en fonction de sa position dans le fichier CSV
     gossip = Gossip.find(params[:id])
     
-    if !gossip[0] #si Id correspond à rien = Gossip n'existe pas
+    if gossip.nil? #si pas de gossip redirige vers l'accueil
       redirect '/'
     else
-      erb :show, locals: {gossip: Gossip.find(params['id'])} #permettra l'affichage spécfique de ce gossip dans show.erb
+      erb :show, locals: {gossip: gossip} #permettra l'affichage spécfique de ce gossip dans show.erb
     end
   end
 

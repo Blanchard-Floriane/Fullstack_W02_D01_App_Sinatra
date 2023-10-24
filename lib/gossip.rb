@@ -6,7 +6,7 @@ class Gossip
   def initialize(author, content) #ces 2 variables deviennent des paramètres via la méthode initialize
     @content = content
     @author = author
-    @id = id
+    @id = generate_unique_id
   end
 
   def save #pour enregistrer dans la BDD
@@ -23,17 +23,14 @@ class Gossip
     return all_gossips #renvoie le résultat
   end
 
-  def self.find(id)
-    data = all()
-    @id = id.to_i + 1
-    if @id - 1  < 0 || id > data.length #si id négatif ou dépasse le nb de gossips dispos
-      return [nil, nil , nil]
-    else 
-      return [@id.to_s,data[@id-1].content,data[@id-1].author]
-    end
+  def generate_unique_id
+    SecureRandom.uuid # Utilisez SecureRandom pour générer un UUID unique
   end
 
-  def destroy_gossip
-    #to be defined
+  def self.find(id) #recherche le gossip par rapport à un ID unique créé dans la méthode generate_unique_id
+    data = all()
+    gossip = data.find { |g| g.id == id }
+    return gossip
   end
+
 end
